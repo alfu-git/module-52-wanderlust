@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+body {
+  font-family: var(--font-geist-sans);
+}
+
+.font-lora {
+  font-family: var(--font-lora);
+}
