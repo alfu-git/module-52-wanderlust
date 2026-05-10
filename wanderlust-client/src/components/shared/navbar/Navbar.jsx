@@ -14,6 +14,7 @@ const Navbar = () => {
     <>
       <li>
         <Link
+          href="/"
           className={`
           text-base font-medium no-underline
       ${pathname === "/" ? "text-[#15A1BF] border-b border-[#15A1BF] rounded-none" : ""}
@@ -25,6 +26,7 @@ const Navbar = () => {
 
       <li>
         <Link
+          href="/destinations"
           className={`
           text-base font-medium no-underline
       ${pathname === "/destinations" ? "text-[#15A1BF] border-b border-[#15A1BF] rounded-none" : ""}
@@ -36,6 +38,19 @@ const Navbar = () => {
 
       <li>
         <Link
+          href="/add-destination"
+          className={`
+          text-base font-medium no-underline
+      ${pathname === "/add-destination" ? "text-[#15A1BF] border-b border-[#15A1BF] rounded-none" : ""}
+        `}
+        >
+          Add Destination
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          href="/my-bookings"
           className={`
           text-base font-medium no-underline
       ${pathname === "/my-bookings" ? "text-[#15A1BF] border-b border-[#15A1BF] rounded-none" : ""}
@@ -47,6 +62,7 @@ const Navbar = () => {
 
       <li>
         <Link
+          href="/admin"
           className={`
         text-base font-medium no-underline
       ${pathname === "/admin" ? "text-[#15A1BF] border-b border-[#15A1BF] rounded-none" : ""}
