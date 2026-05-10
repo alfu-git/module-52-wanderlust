@@ -1,13 +1,7 @@
+import DestinationEditForm from "@/components/destinationDetailsPage/destinationEditForm/DestinationEditForm";
 import { getDestinationById } from "@/lib/data";
 import { Button, Separator } from "@heroui/react";
-import {
-  CalendarDays,
-  ArrowRight,
-  MapPinned,
-  MoveLeft,
-  PencilLine,
-  Trash2,
-} from "lucide-react";
+import { CalendarDays, ArrowRight, MapPinned, MoveLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -38,25 +32,7 @@ const DestinationDetailsPage = async ({ params }) => {
             </Button>
           </Link>
 
-          <div className="flex gap-4 items-center">
-            <Button
-              className={
-                "h-12 px-6 font-medium bg-transparent text-base text-[#0C0B0B] border border-[#B6B6B6] rounded-none"
-              }
-            >
-              <PencilLine size={10} />
-              Edit
-            </Button>
-
-            <Button
-              className={
-                "h-12 px-6 font-medium bg-transparent text-base text-[#EF4444] border border-[#EF4444] rounded-none"
-              }
-            >
-              <Trash2 size={10} />
-              Cancel
-            </Button>
-          </div>
+          <DestinationEditForm destination={destination} />
         </div>
 
         <div>
