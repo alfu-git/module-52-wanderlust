@@ -1,4 +1,5 @@
 import AddDestinationForm from "@/components/addDestinationPage/addDestinationForm/AddDestinationForm";
+import { addDestinationAction } from "@/lib/actions";
 import React from "react";
 
 export const metadata = {
@@ -15,7 +16,7 @@ const AddDestinationPage = () => {
         </h2>
 
         <div className="max-w-200 mx-auto">
-          <AddDestinationForm />
+          <AddDestinationForm addDestinationAction={addDestinationAction} />
         </div>
       </div>
     </section>

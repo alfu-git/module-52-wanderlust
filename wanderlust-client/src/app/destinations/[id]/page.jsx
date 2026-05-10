@@ -1,4 +1,5 @@
 import DestinationEditForm from "@/components/destinationDetailsPage/destinationEditForm/DestinationEditForm";
+import { destinationEditAction } from "@/lib/actions";
 import { getDestinationById } from "@/lib/data";
 import { Button, Separator } from "@heroui/react";
 import { CalendarDays, ArrowRight, MapPinned, MoveLeft } from "lucide-react";
@@ -21,6 +22,11 @@ const DestinationDetailsPage = async ({ params }) => {
     duration,
   } = destination;
 
+  const destinationEditActionWrapper = async (formData) => {
+    "use server";
+    return destinationEditAction(id, formData);
+  };
+
   return (
     <section className="mt-10 mb-20 max-w-7xl mx-auto px-5">
       <div>
@@ -32,7 +38,10 @@ const DestinationDetailsPage = async ({ params }) => {
             </Button>
           </Link>
 
-          <DestinationEditForm destination={destination} />
+          <DestinationEditForm
+            destination={destination}
+            destinationEditActionWrapper={destinationEditActionWrapper}
+          />
         </div>
 
         <div>
@@ -48,7 +57,7 @@ const DestinationDetailsPage = async ({ params }) => {
 
           <Separator />
 
-          <div className="mt-10 flex flex-col xl:flex-row xl:items-center gap-10">
+          <div className="mt-10 flex flex-col xl:flex-row xl:justify-between xl:items-center gap-10">
             <div>
               <span className="flex gap-2 items-center text-[#6C696D]">
                 <MapPinned size={18} /> <span>{country}</span>

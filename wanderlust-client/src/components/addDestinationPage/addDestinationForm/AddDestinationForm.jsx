@@ -11,28 +11,10 @@ import {
 } from "@heroui/react";
 import React from "react";
 
-const AddDestinationForm = () => {
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const destinationData = Object.fromEntries(formData.entries());
-
-    const res = await fetch("http://localhost:5000/destinations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(destinationData),
-    });
-
-    const data = await res.json();
-    return data;
-  };
-
+const AddDestinationForm = ({ addDestinationAction }) => {
   return (
     <form
-      onSubmit={handleOnSubmit}
+      action={addDestinationAction}
       className="p-10 space-y-8 border border-[#EEEEEE] shadow-md shadow-[#000000]/12"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -40,7 +22,10 @@ const AddDestinationForm = () => {
         <div className="md:col-span-2">
           <TextField name="destinationName" isRequired>
             <Label>Destination Name</Label>
-            <Input placeholder="Bali Paradise" className="rounded-2xl" />
+            <Input
+              placeholder="Your destination name"
+              className="rounded-2xl"
+            />
             <FieldError />
           </TextField>
         </div>
@@ -48,7 +33,7 @@ const AddDestinationForm = () => {
         {/* Country */}
         <TextField name="country" isRequired>
           <Label>Country</Label>
-          <Input placeholder="Indonesia" className="rounded-2xl" />
+          <Input placeholder="Country name" className="rounded-2xl" />
           <FieldError />
         </TextField>
 
@@ -105,14 +90,14 @@ const AddDestinationForm = () => {
         {/* Price */}
         <TextField name="price" type="number" isRequired>
           <Label>Price (USD)</Label>
-          <Input type="number" placeholder="1299" className="rounded-2xl" />
+          <Input type="number" placeholder="Price" className="rounded-2xl" />
           <FieldError />
         </TextField>
 
         {/* Duration */}
         <TextField name="duration" isRequired>
           <Label>Duration</Label>
-          <Input placeholder="7 Days / 6 Nights" className="rounded-2xl" />
+          <Input placeholder="Days/Night" className="rounded-2xl" />
           <FieldError />
         </TextField>
 
@@ -131,7 +116,7 @@ const AddDestinationForm = () => {
             <Label>Image URL</Label>
             <Input
               type="url"
-              placeholder="https://example.com/bali-paradise.jpg"
+              placeholder="Destination image url"
               className="rounded-2xl"
             />
             <FieldError />

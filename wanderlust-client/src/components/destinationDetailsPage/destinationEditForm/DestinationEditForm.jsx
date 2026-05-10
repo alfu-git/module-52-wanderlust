@@ -14,8 +14,9 @@ import {
 } from "@heroui/react";
 import { PencilLine, Save, Trash2 } from "lucide-react";
 
-const DestinationEditForm = ({ destination }) => {
+const DestinationEditForm = ({ destination, destinationEditActionWrapper }) => {
   const {
+    _id,
     imageUrl,
     country,
     category,
@@ -25,14 +26,6 @@ const DestinationEditForm = ({ destination }) => {
     description,
     duration,
   } = destination;
-
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const destinationUpdateData = Object.fromEntries(formData.entries());
-    console.log(destinationUpdateData);
-  };
 
   return (
     <Modal>
@@ -61,7 +54,10 @@ const DestinationEditForm = ({ destination }) => {
 
             <Modal.Body className="p-2">
               <Surface variant="default">
-                <form onSubmit={handleOnSubmit} className="space-y-8">
+                <form
+                  action={destinationEditActionWrapper}
+                  className="space-y-8"
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Destination Name */}
                     <div className="md:col-span-2">
