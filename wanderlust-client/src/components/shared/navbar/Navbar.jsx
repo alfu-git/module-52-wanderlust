@@ -59,7 +59,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-white/60 backdrop-blur-lg max-w-7xl mx-auto py-4 px-5">
+    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-white/40 backdrop-blur-sm max-w-7xl mx-auto py-4 px-5">
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button
