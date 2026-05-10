@@ -32,6 +32,12 @@ async function run() {
     const db = client.db("module_50_wanderlust-db");
     const destinationsCollection = db.collection("destinations");
 
+    app.get("/destinations", async (req, res) => {
+      const cursor = destinationsCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     app.post("/destinations", async (req, res) => {
       const destinationDoc = req.body;
       const result = await destinationsCollection.insertOne(destinationDoc);

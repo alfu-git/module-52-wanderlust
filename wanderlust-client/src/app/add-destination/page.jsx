@@ -1,6 +1,11 @@
 import AddDestinationForm from "@/components/addDestinationPage/addDestinationForm/AddDestinationForm";
 import React from "react";
 
+export const metadata = {
+  title: "Wanderlust | Add Your Next Destination",
+  description: "User can add their future destination",
+};
+
 const AddDestinationPage = () => {
   return (
     <section className="my-10 lg:my-20 max-w-7xl mx-auto px-5">
