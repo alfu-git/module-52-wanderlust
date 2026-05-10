@@ -59,8 +59,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-white/40 backdrop-blur-sm max-w-7xl mx-auto py-4 px-5">
-      <header className="flex items-center justify-between">
+    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-white/40 backdrop-blur-sm  py-4 ">
+      <header className="flex items-center justify-between max-w-7xl mx-auto px-5">
         <div className="flex items-center gap-4">
           <button
             className="lg:hidden"
