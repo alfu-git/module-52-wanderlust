@@ -3,6 +3,11 @@
 
 body {
   font-family: var(--font-geist-sans);
+  color: #0c0b0b;
+}
+
+a {
+  text-decoration: none;
 }
 
 .font-lora {
