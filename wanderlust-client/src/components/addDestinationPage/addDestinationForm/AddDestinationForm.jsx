@@ -12,8 +12,29 @@ import {
 import React from "react";
 
 const AddDestinationForm = () => {
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const destinationData = Object.fromEntries(formData.entries());
+
+    const res = await fetch("http://localhost:5000/destinations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(destinationData),
+    });
+
+    const data = await res.json();
+    console.log(data);
+  };
+
   return (
-    <form className="p-10 space-y-8 border border-[#EEEEEE] shadow-md shadow-[#000000]/12">
+    <form
+      onSubmit={handleOnSubmit}
+      className="p-10 space-y-8 border border-[#EEEEEE] shadow-md shadow-[#000000]/12"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Destination Name */}
         <div className="md:col-span-2">

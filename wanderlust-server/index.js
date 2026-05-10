@@ -29,6 +29,15 @@ async function run() {
   try {
     await client.connect();
 
+    const db = client.db("module_50_wanderlust-db");
+    const destinationsCollection = db.collection("destinations");
+
+    app.post("/destinations", async (req, res) => {
+      const destinationDoc = req.body;
+      const result = await destinationsCollection.insertOne(destinationDoc);
+      res.send(result);
+    });
+
     await client.db("admin").command({ ping: 1 });
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!",
