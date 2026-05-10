@@ -1,5 +1,6 @@
+import DestinationDeleteDialog from "@/components/destinationDetailsPage/destinationDeleteDialog/DestinationDeleteDialog";
 import DestinationEditForm from "@/components/destinationDetailsPage/destinationEditForm/DestinationEditForm";
-import { destinationEditAction } from "@/lib/actions";
+import { destinationDeleteAction, destinationEditAction } from "@/lib/actions";
 import { getDestinationById } from "@/lib/data";
 import { Button, Separator } from "@heroui/react";
 import { CalendarDays, ArrowRight, MapPinned, MoveLeft } from "lucide-react";
@@ -38,10 +39,17 @@ const DestinationDetailsPage = async ({ params }) => {
             </Button>
           </Link>
 
-          <DestinationEditForm
-            destination={destination}
-            destinationEditActionWrapper={destinationEditActionWrapper}
-          />
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <DestinationEditForm
+              destination={destination}
+              destinationEditActionWrapper={destinationEditActionWrapper}
+            />
+
+            <DestinationDeleteDialog
+              destination={destination}
+              destinationDeleteAction={destinationDeleteAction}
+            />
+          </div>
         </div>
 
         <div>

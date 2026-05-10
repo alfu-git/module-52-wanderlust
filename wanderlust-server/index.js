@@ -47,6 +47,12 @@ async function run() {
       res.send(result);
     });
 
+    app.post("/destinations", async (req, res) => {
+      const destinationDoc = req.body;
+      const result = await destinationsCollection.insertOne(destinationDoc);
+      res.send(result);
+    });
+
     app.patch("/destinations/:id", async (req, res) => {
       const { id } = req.params;
       const updateData = req.body;
@@ -59,9 +65,13 @@ async function run() {
       res.send(result);
     });
 
-    app.post("/destinations", async (req, res) => {
-      const destinationDoc = req.body;
-      const result = await destinationsCollection.insertOne(destinationDoc);
+    app.delete("/destinations/:id", async (req, res) => {
+      const { id } = req.params;
+      const query = {
+        _id: new ObjectId(id),
+      };
+
+      const result = await destinationsCollection.deleteOne(query);
       res.send(result);
     });
 

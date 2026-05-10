@@ -46,3 +46,20 @@ export const destinationEditAction = async (id, formData) => {
 
   return data;
 };
+
+export const destinationDeleteAction = async (id) => {
+  "use server";
+
+  const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+    method: "DELETE",
+  });
+
+  const data = await res.json();
+
+  if (data.deletedCount > 0) {
+    revalidatePath("/destinations");
+    redirect("/destinations");
+  }
+
+  return data;
+};
