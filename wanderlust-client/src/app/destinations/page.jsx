@@ -4,6 +4,11 @@ import { Separator } from "@heroui/react";
 import { ChevronDown } from "lucide-react";
 import React from "react";
 
+export const metadata = {
+  title: "Wanderlust | All Destinations",
+  description: "User can explore all destinations",
+};
+
 const DestinationsPage = async () => {
   const destinations = await getAllDestinations();
 

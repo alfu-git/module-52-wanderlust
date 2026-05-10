@@ -40,7 +40,7 @@ const DestinationCard = ({ destination }) => {
           <span>{duration}</span>
         </p>
 
-        <Link href={"/"}>
+        <Link href={`/destinations/${_id}`}>
           <Button
             className={
               "p-0 h-full bg-transparent text-[#15A1BF] border-b border-[#15A1BF] rounded-none"
