@@ -18,6 +18,11 @@ const DestinationBookingCard = ({ destination }) => {
   const { _id, destinationName, imageUrl, price } = destination;
 
   const handleBooking = async () => {
+    if (!departureDate) {
+      toast.warning("Please select a departure date");
+      return;
+    }
+
     const bookingData = {
       userName: user?.name,
       userId: user?.id,

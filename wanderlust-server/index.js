@@ -40,7 +40,7 @@ async function run() {
     });
 
     app.get("/destinations/:id", async (req, res) => {
-      const { id } = await req.params;
+      const { id } = req.params;
       const query = {
         _id: new ObjectId(id),
       };
@@ -86,6 +86,15 @@ async function run() {
       const { userId } = req.params;
       const result = await bookingsCollection.find({ userId }).toArray();
       res.send(result);
+    });
+
+    app.delete("/booking/:bookingId", async (req, res) => {
+      const { bookingId } = req.params;
+      const query = {
+        _id: new ObjectId(bookingId),
+      };
+      const result = await bookingsCollection.deleteOne(query);
+      res.json(result);
     });
 
     await client.db("admin").command({ ping: 1 });

@@ -4,6 +4,11 @@ import { getAllBookingsByUserId } from "@/lib/data";
 import { headers } from "next/headers";
 import React from "react";
 
+export const metadata = {
+  title: "Wanderlust | My-Bookings",
+  description: "Wanderlust app user all destinations booking page",
+};
+
 const MyBookingsPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),

@@ -1,7 +1,9 @@
 import { Button } from "@heroui/react";
-import { CalendarDays, CircleCheck, Eye, MapPin, Trash2 } from "lucide-react";
+import { CalendarDays, CircleCheck, Eye, MapPin } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import BookingDeleteDialog from "../bookingDeleteDialog/BookingDeleteDialog";
+import { bookingDeleteAction } from "@/lib/actions";
 
 const BookingCard = ({ booking }) => {
   const { _id, destinationName, destinationImage, departureDate, price } =
@@ -54,14 +56,10 @@ const BookingCard = ({ booking }) => {
         </div>
 
         <div className="flex gap-4 items-end">
-          <Button
-            className={
-              "px-6 h-12 bg-transparent rounded-none text-[#EF4444] border border-[#EF4444] font-medium"
-            }
-          >
-            <Trash2 />
-            Cancel
-          </Button>
+          <BookingDeleteDialog
+            booking={booking}
+            bookingDeleteAction={bookingDeleteAction}
+          />
 
           <Button
             className={

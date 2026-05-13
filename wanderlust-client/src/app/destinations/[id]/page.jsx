@@ -4,10 +4,21 @@ import DestinationEditForm from "@/components/destinationDetailsPage/destination
 import { destinationDeleteAction, destinationEditAction } from "@/lib/actions";
 import { getDestinationById } from "@/lib/data";
 import { Button, Separator } from "@heroui/react";
-import { CalendarDays, ArrowRight, MapPinned, MoveLeft } from "lucide-react";
+import { CalendarDays, MapPinned, MoveLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export const generateMetadata = async ({ params }) => {
+  const { id } = await params;
+
+  const destination = await getDestinationById(id);
+
+  return {
+    title: destination.destinationName,
+    description: destination.description,
+  };
+};
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;

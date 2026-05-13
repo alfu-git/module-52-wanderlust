@@ -63,3 +63,19 @@ export const destinationDeleteAction = async (id) => {
 
   return data;
 };
+
+export const bookingDeleteAction = async (bookingId) => {
+  "use server";
+
+  const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
+    method: "DELETE",
+  });
+
+  const data = await res.json();
+
+  if (data.deletedCount > 0) {
+    revalidatePath("/my-bookings");
+  }
+
+  return data;
+};
