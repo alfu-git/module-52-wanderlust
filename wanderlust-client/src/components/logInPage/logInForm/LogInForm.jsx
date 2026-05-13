@@ -102,7 +102,7 @@ const LogInForm = () => {
               <InputGroup.Input
                 className="pr-10"
                 type={isPasswordVisible ? "text" : "password"}
-                placeholder="Create a password"
+                placeholder="Enter your password"
               />
             </InputGroup>
 

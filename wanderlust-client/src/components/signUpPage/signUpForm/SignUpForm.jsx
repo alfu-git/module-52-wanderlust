@@ -17,6 +17,7 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { handleGoogleLogin } from "@/lib/googleAuth";
+import { IoIosLink } from "react-icons/io";
 
 const SignUpForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -37,6 +38,7 @@ const SignUpForm = () => {
 
     const { data, error } = await authClient.signUp.email({
       name: userData.name,
+      image: userData.imageUrl,
       email: userData.email,
       password: userData.password,
       confirmPassword: userData.confirmPassword,
@@ -67,6 +69,19 @@ const SignUpForm = () => {
             </InputGroup.Prefix>
 
             <InputGroup.Input placeholder="Enter your name" />
+          </InputGroup>
+          <FieldError />
+        </TextField>
+
+        {/* image url */}
+        <TextField isRequired name="imageUrl" type="url">
+          <Label>Image</Label>
+          <InputGroup className={"bg-[#F8FAFC] border border-[#EEEEEE]"}>
+            <InputGroup.Prefix>
+              <IoIosLink className="size-4 text-muted" />
+            </InputGroup.Prefix>
+
+            <InputGroup.Input placeholder="Enter your image url" />
           </InputGroup>
           <FieldError />
         </TextField>

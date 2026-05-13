@@ -1,14 +1,18 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Link } from "@heroui/react";
+import { Avatar, Button, Link } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import { UserRound } from "lucide-react";
 import Image from "next/image";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const pathname = usePathname();
+
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
 
   const navLink = (
     <>
@@ -120,36 +124,57 @@ const Navbar = () => {
           />
         </Link>
 
-        <div className="flex items-center gap-4 sm:gap-8">
-          <Link href="/profile">
-            <Button
-              className={
-                "p-0 bg-transparent w-full h-full text-base text-[#0c0b0b]"
-              }
-            >
-              <UserRound /> Profile
-            </Button>
-          </Link>
+        <div>
+          {isPending ? (
+            <p>Loading...</p>
+          ) : user ? (
+            <div className="flex items-center gap-4">
+              <Link href="/profile">
+                <Button
+                  className={
+                    "p-0 bg-transparent w-full h-full text-base text-[#0c0b0b]"
+                  }
+                >
+                  <UserRound /> Profile
+                </Button>
+              </Link>
 
-          <Link href="/login">
-            <Button
-              className={
-                "p-0 bg-transparent w-full h-full text-base text-[#0c0b0b]"
-              }
-            >
-              Login
-            </Button>
-          </Link>
+              <Avatar>
+                <Avatar.Image alt={user?.name} src={user?.image} />
+                <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+              </Avatar>
 
-          <Link href="/sign-up">
-            <Button
-              className={
-                "p-0 bg-transparent w-full h-full text-base text-[#0c0b0b]"
-              }
-            >
-              Sign Up
-            </Button>
-          </Link>
+              <Button
+                variant="danger"
+                onClick={async () => await authClient.signOut()}
+                className={"rounded-none"}
+              >
+                Log Out
+              </Button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-4 sm:gap-8">
+              <Link href="/login">
+                <Button
+                  className={
+                    "p-0 bg-transparent w-full h-full text-base text-[#0c0b0b]"
+                  }
+                >
+                  Login
+                </Button>
+              </Link>
+
+              <Link href="/sign-up">
+                <Button
+                  className={
+                    "p-0 bg-transparent w-full h-full text-base text-[#0c0b0b]"
+                  }
+                >
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </header>
 
