@@ -1,3 +1,4 @@
+import DestinationBookingCard from "@/components/destinationDetailsPage/destinationBookingCard/DestinationBookingCard";
 import DestinationDeleteDialog from "@/components/destinationDetailsPage/destinationDeleteDialog/DestinationDeleteDialog";
 import DestinationEditForm from "@/components/destinationDetailsPage/destinationEditForm/DestinationEditForm";
 import { destinationDeleteAction, destinationEditAction } from "@/lib/actions";
@@ -83,31 +84,7 @@ const DestinationDetailsPage = async ({ params }) => {
               <p className="text-lg text-[#6C696D]">{description}</p>
             </div>
 
-            <div className="p-5 max-w-100 xl:w-100 border border-[#EEEEEE]/93 shadow shadow-[#000000]/12">
-              <div className="mb-12 flex flex-col gap-1">
-                <span className="text-[#6C696D]">Starting from</span>
-
-                <span className="text-[40px] text-[#15A1BF] font-semibold">
-                  ${price}
-                </span>
-
-                <span className="text-[#6C696D]">per person</span>
-              </div>
-
-              <div className="mb-5 py-3 px-4 w-full bg-[#F8FAFC] border border-[#EEEEEE]/93 text-lg">
-                {departureDate}
-              </div>
-
-              <Separator />
-
-              <Button
-                className={
-                  "mt-5 w-full h-14 bg-[#15A1BF] rounded-none font-medium"
-                }
-              >
-                Book Now <ArrowRight />
-              </Button>
-            </div>
+            <DestinationBookingCard destination={destination} />
           </div>
         </div>
       </div>

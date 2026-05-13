@@ -31,6 +31,7 @@ async function run() {
 
     const db = client.db("module_50_wanderlust-db");
     const destinationsCollection = db.collection("destinations");
+    const bookingsCollection = db.collection("bookings");
 
     app.get("/destinations", async (req, res) => {
       const cursor = destinationsCollection.find();
@@ -72,6 +73,12 @@ async function run() {
       };
 
       const result = await destinationsCollection.deleteOne(query);
+      res.send(result);
+    });
+
+    app.post("/booking", async (req, res) => {
+      const bookingDoc = req.body;
+      const result = await bookingsCollection.insertOne(bookingDoc);
       res.send(result);
     });
 
