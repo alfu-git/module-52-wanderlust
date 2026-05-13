@@ -16,6 +16,7 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { handleGoogleLogin } from "@/lib/googleAuth";
 
 const SignUpForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -223,6 +224,7 @@ const SignUpForm = () => {
         </div>
 
         <Button
+          onClick={handleGoogleLogin}
           className={
             "w-full h-14 bg-transparent border border-[#EEEEEE] rounded-none text-[#0C0B0B] font-medium gap-2"
           }

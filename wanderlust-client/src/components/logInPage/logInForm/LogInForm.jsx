@@ -15,6 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { handleGoogleLogin } from "@/lib/googleAuth";
 
 const LogInForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -145,6 +146,7 @@ const LogInForm = () => {
         </div>
 
         <Button
+          onClick={handleGoogleLogin}
           className={
             "w-full h-14 bg-transparent border border-[#EEEEEE] rounded-none text-[#0C0B0B] font-medium gap-2"
           }
