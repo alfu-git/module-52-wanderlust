@@ -4,15 +4,17 @@ import { Avatar, Button, Link } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import { UserRound } from "lucide-react";
 import Image from "next/image";
-import { authClient } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const pathname = usePathname();
+  const isPending = false;
 
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session } = useSession();
   const user = session?.user;
+  console.log(session);
 
   const navLink = (
     <>

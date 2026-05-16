@@ -1,5 +1,5 @@
-const dns = require("node:dns");
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
+import dns from "node:dns";
+dns.setServers(["1.1.1.1", "8.8.4.4"]);
 import { Geist, Lora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
