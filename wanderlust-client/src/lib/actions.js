@@ -1,8 +1,14 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { auth } from "./auth";
+import { headers } from "next/headers";
 
 export const addDestinationAction = async (formData) => {
   "use server";
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   const destinationData = Object.fromEntries(formData.entries());
 
@@ -10,6 +16,7 @@ export const addDestinationAction = async (formData) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(destinationData),
   });
@@ -27,6 +34,10 @@ export const addDestinationAction = async (formData) => {
 export const destinationEditAction = async (id, formData) => {
   "use server";
 
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   const destinationUpdateData = Object.fromEntries(formData.entries());
   destinationUpdateData.price = Number(destinationUpdateData.price);
 
@@ -34,6 +45,7 @@ export const destinationEditAction = async (id, formData) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(destinationUpdateData),
   });
@@ -50,8 +62,15 @@ export const destinationEditAction = async (id, formData) => {
 export const destinationDeleteAction = async (id) => {
   "use server";
 
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   const res = await fetch(`http://localhost:5000/destinations/${id}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   const data = await res.json();
@@ -67,8 +86,15 @@ export const destinationDeleteAction = async (id) => {
 export const bookingDeleteAction = async (bookingId) => {
   "use server";
 
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   const data = await res.json();

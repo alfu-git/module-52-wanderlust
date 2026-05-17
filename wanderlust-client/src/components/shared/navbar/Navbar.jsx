@@ -14,7 +14,6 @@ const Navbar = () => {
 
   const { data: session } = useSession();
   const user = session?.user;
-  console.log(session);
 
   const navLink = (
     <>
