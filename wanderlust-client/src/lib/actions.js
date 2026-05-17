@@ -12,7 +12,7 @@ export const addDestinationAction = async (formData) => {
 
   const destinationData = Object.fromEntries(formData.entries());
 
-  const res = await fetch("http://localhost:5000/destinations", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destinations`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,7 +41,7 @@ export const destinationEditAction = async (id, formData) => {
   const destinationUpdateData = Object.fromEntries(formData.entries());
   destinationUpdateData.price = Number(destinationUpdateData.price);
 
-  const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destinations/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export const destinationDeleteAction = async (id) => {
     headers: await headers(),
   });
 
-  const res = await fetch(`http://localhost:5000/destinations/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destinations/${id}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ export const bookingDeleteAction = async (bookingId) => {
     headers: await headers(),
   });
 
-  const res = await fetch(`http://localhost:5000/booking/${bookingId}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,
